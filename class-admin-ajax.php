@@ -47,9 +47,15 @@ class WooCommerce_Bulk_Product_Delete_Admin_Ajax {
         if($_POST['wc-bpd-delete-type'] == 'delete'){
             $delete_function = 'wp_delete_post';            
         }
+		if($_POST['wc-bpd-delete-type'] == 'untrash'){
+            $delete_function = 'wp_untrash_post';            
+        }
         
         foreach($ids as $id){
+			$id = str_replace("\r","",$id);
+			if ($id == "") break;
             $delete = $delete_function($id);
+			error_log( $delete_function." ID: " . $id);
             if($delete){
                 $success++;
             } else {
@@ -71,10 +77,15 @@ class WooCommerce_Bulk_Product_Delete_Admin_Ajax {
         $delete_function = 'wp_trash_post';
         
         if($_POST['wc-bpd-delete-type'] == 'delete'){
-            $delete_function = 'wp_delete_post';            
+            $delete_function = 'wp_delete_post';
         }
-        
+		if($_POST['wc-bpd-delete-type'] == 'untrash'){
+            $delete_function = 'wp_untrash_post';  
+        }
         foreach($skus as $sku){
+			$sku = str_replace("\r","",$sku);
+			if ($sku == "") break;
+			error_log( $delete_function." SKU: " . $sku);
             $product_id = wc_get_product_id_by_sku($sku);
             if($product_id > 0){
                 $delete = $delete_function($product_id);
