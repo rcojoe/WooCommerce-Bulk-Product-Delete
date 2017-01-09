@@ -43,6 +43,7 @@ SKU3</textarea></td>
                         <select id="wc-bpd-delete-type" name="wc-bpd-delete-type">
                             <option value="trash"><?php echo __('Move to Trash',WC_BPD_LANGUAGE_PATH); ?></option>
                             <option value="delete"><?php echo __('Delete',WC_BPD_LANGUAGE_PATH); ?></option>
+							<option value="untrash"><?php echo __('Restore from Trash',WC_BPD_LANGUAGE_PATH); ?></option>
                         </select></td>
                 </tr>
                 <tr>
